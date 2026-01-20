@@ -14,33 +14,37 @@
 
         body {
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            background: #f8f9fa;
+            background-color: #f8f9fa;
+            background-image: url('background.png');
+            background-size: 800px 800px;
+            background-repeat: repeat;
+            background-attachment: fixed;
             min-height: 100vh;
             line-height: 1.6;
+            position: relative;
         }
 
-        /* Mobile-first hero section with background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.80);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Mobile-first hero section */
         .hero {
-            background-image: url('background.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
             min-height: 45vh;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 2rem 1rem;
             position: relative;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(255, 255, 255, 0.88);
+            z-index: 1;
         }
 
         .hero-content {
@@ -70,6 +74,8 @@
             background: #ffffff;
             padding: 2rem 1.25rem 5rem;
             max-width: 100%;
+            position: relative;
+            z-index: 1;
         }
 
         .intro {
@@ -234,34 +240,6 @@
             border: 1px solid #cfc;
         }
 
-        /* Decorative wildlife elements */
-        .wildlife-accent {
-            opacity: 0.15;
-            position: fixed;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .wildlife-accent.top-right {
-            top: 0;
-            right: 0;
-            width: 180px;
-            height: 180px;
-            background-image: url('background.png');
-            background-size: 400%;
-            background-position: 85% 15%;
-        }
-
-        .wildlife-accent.bottom-left {
-            bottom: 0;
-            left: 0;
-            width: 180px;
-            height: 180px;
-            background-image: url('background.png');
-            background-size: 400%;
-            background-position: 15% 85%;
-        }
-
         /* Tablet styles (min-width: 768px) */
         @media (min-width: 768px) {
             .hero {
@@ -298,13 +276,6 @@
                 padding: 1rem;
                 font-size: 1.1rem;
             }
-
-            .wildlife-accent.top-right,
-            .wildlife-accent.bottom-left {
-                width: 250px;
-                height: 250px;
-                opacity: 0.18;
-            }
         }
 
         /* Desktop styles (min-width: 1024px) */
@@ -337,13 +308,6 @@
             .form-container {
                 max-width: 520px;
             }
-
-            .wildlife-accent.top-right,
-            .wildlife-accent.bottom-left {
-                width: 300px;
-                height: 300px;
-                opacity: 0.20;
-            }
         }
 
         /* Large desktop (min-width: 1440px) */
@@ -359,21 +323,10 @@
             .intro h1 {
                 font-size: 2.35rem;
             }
-
-            .wildlife-accent.top-right,
-            .wildlife-accent.bottom-left {
-                width: 350px;
-                height: 350px;
-                opacity: 0.22;
-            }
         }
     </style>
 </head>
 <body>
-    <!-- Decorative wildlife accents -->
-    <div class="wildlife-accent top-right"></div>
-    <div class="wildlife-accent bottom-left"></div>
-
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
