@@ -136,6 +136,45 @@
             z-index: 1;
         }
 
+        /* Order Now Button */
+        .order-section {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2.5rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .order-button {
+            display: inline-block;
+            background: #239F85;
+            color: white;
+            text-decoration: none;
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(35, 159, 133, 0.2);
+        }
+
+        .order-button:hover,
+        .order-button:focus {
+            background: #1e8a73;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(35, 159, 133, 0.35);
+        }
+
+        .order-button:active {
+            transform: translateY(0);
+        }
+
+        .order-helper-text {
+            margin-top: 0.75rem;
+            font-size: 0.85rem;
+            color: #666;
+            font-style: italic;
+        }
+
         .intro {
             text-align: center;
             margin-bottom: 2rem;
@@ -389,6 +428,15 @@
                 font-size: 1.05rem;
             }
 
+            .order-button {
+                font-size: 1.15rem;
+                padding: 1.1rem 2.75rem;
+            }
+
+            .order-helper-text {
+                font-size: 0.9rem;
+            }
+
             .wine-header h1 {
                 font-size: 2.2rem;
             }
@@ -437,6 +485,11 @@
 
             .intro p {
                 font-size: 1.1rem;
+            }
+
+            .order-button {
+                font-size: 1.2rem;
+                padding: 1.15rem 3rem;
             }
 
             .form-container {
@@ -494,6 +547,14 @@
 
         <!-- Main Content -->
         <section class="main-content">
+            <!-- Order Now Section -->
+            <div class="order-section">
+                <a href="mailto:orders@erinwines.com?subject=Erin%20Wines%20Order%20Enquiry&body=Hi%20Erin%20Team%2C%0D%0A%0D%0AI%20would%20like%20to%20order%20the%20following%20wines%3A%0D%0A%0D%0AMr%20T%27s%20Sauvignon%20Blanc%20R%20189%2C00%20*%206%0D%0AField%20Blend%20White%20R%20249%2C00%20*%206%0D%0AField%20Blend%20Red%20R%20259%2C00%20*%206%0D%0AWritten%20in%20the%20Stars%20Mourv%C3%A8dre%20R%20289%2C00%20*%206%0D%0A%0D%0AMy%20details%20are%0D%0AName%3A%0D%0ADelivery%20Address%3A%0D%0AContact%20Number%3A%0D%0A%0D%0AThanks" class="order-button">
+                    Order Now
+                </a>
+                <p class="order-helper-text">Opens your email app with a pre-filled order template.</p>
+            </div>
+
             <div class="intro">
                 <h1>Join our journey</h1>
                 <p>Sign up to stay in the loop about vintage releases, special offers and important updates</p>
