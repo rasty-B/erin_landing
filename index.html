@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-WKLGFKQJ');</script>
+    <!-- End Google Tag Manager -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Erin Wines</title>
@@ -522,6 +529,11 @@
     </style>
 </head>
 <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WKLGFKQJ"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
     <!-- Navigation -->
     <nav class="navigation">
         <div class="nav-container">
@@ -683,30 +695,72 @@
         }(jQuery));
         var $mcj = jQuery.noConflict(true);
 
+        // dataLayer initialisation (safe to call before GTM fires)
+        window.dataLayer = window.dataLayer || [];
+
+        // Page labels for readable GTM reporting
+        var pageLabels = {
+            'signup':              'Sign Up',
+            'mr-ts-savvy-blanc':   "Mr T's Savvy Blanc 2024",
+            'red-field-blend':     'Red Field Blend 2024',
+            'white-field-blend':   'White Field Blend 2024',
+            'written-in-the-stars':'Written in the Stars Mourvèdre 2024'
+        };
+
         // Page navigation
         function navigateToPage(pageId) {
             // Hide all sections
-            const sections = document.querySelectorAll('.page-section');
-            sections.forEach(section => {
+            var sections = document.querySelectorAll('.page-section');
+            sections.forEach(function(section) {
                 section.classList.remove('active');
             });
 
             // Show selected section
-            const selectedPage = document.getElementById(pageId + '-page');
+            var selectedPage = document.getElementById(pageId + '-page');
             if (selectedPage) {
                 selectedPage.classList.add('active');
-                // Scroll to top smoothly
                 window.scrollTo({ top: 0, behavior: 'smooth' });
+
+                // Fire virtual pageview to GTM
+                window.dataLayer.push({
+                    event:     'virtual_pageview',
+                    page_path: '/' + pageId,
+                    page_title: pageLabels[pageId] || pageId
+                });
             }
         }
 
         // Set initial page based on URL hash
         window.addEventListener('DOMContentLoaded', function() {
-            const hash = window.location.hash.substring(1);
+            var hash = window.location.hash.substring(1);
             if (hash) {
-                const selector = document.getElementById('pageSelector');
+                var selector = document.getElementById('pageSelector');
                 selector.value = hash;
                 navigateToPage(hash);
+            }
+
+            // Track Order Now button clicks
+            var orderBtn = document.querySelector('.order-button');
+            if (orderBtn) {
+                orderBtn.addEventListener('click', function() {
+                    window.dataLayer.push({
+                        event:        'order_now_click',
+                        event_category: 'engagement',
+                        event_label:  'Order Now button'
+                    });
+                });
+            }
+
+            // Track newsletter Subscribe form submission
+            var subscribeForm = document.getElementById('mc-embedded-subscribe-form');
+            if (subscribeForm) {
+                subscribeForm.addEventListener('submit', function() {
+                    window.dataLayer.push({
+                        event:        'newsletter_subscribe',
+                        event_category: 'engagement',
+                        event_label:  'Mailchimp subscribe form'
+                    });
+                });
             }
         });
 
